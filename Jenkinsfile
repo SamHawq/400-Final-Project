@@ -53,6 +53,7 @@ pipeline {
     stage('API Tests') {
       steps {
         dir('demo-master') {
+          sh 'gradlew apprun'
           sh 'export JAVA_HOME=/opt/java/openjdk && ./gradlew runApiTests'
         }
        
