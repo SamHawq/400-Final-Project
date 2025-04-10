@@ -5,7 +5,7 @@ pipeline {
   agent {
         docker {
             image 'evanmann/ensf400-final-project:projectDependencies'
-            args '-it'
+            args '-it -v $HOME/.gradle:/home/gradle/.gradle'
             //registryUrl 'https://index.docker.io/v1/'
             //registryCredentialsId 'your-credentials-id'
         }
