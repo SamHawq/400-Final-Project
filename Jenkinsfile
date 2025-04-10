@@ -13,6 +13,7 @@ pipeline {
 
   tools {
     jdk 'jdk11'
+    gradlew 'gradlew'
   }
 
    environment {
