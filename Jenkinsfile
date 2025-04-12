@@ -112,10 +112,18 @@ pipeline {
 
       post {
         success {
-          githubNotify context: 'SonarQube', status: 'SUCCESS', description: 'Analysis passed'
+          setGitHubPullRequestStatus(
+            state: 'SUCCESS',
+            context: 'SonarQube',
+            message: 'Static analysis passed'
+          )
         }
         failure {
-          githubNotify context: 'SonarQube', status: 'FAILURE', description: 'Analysis failed'
+          setGitHubPullRequestStatus(
+            state: 'FAILURE',
+            context: 'SonarQube',
+            message: 'Static analysis failed'
+          )
         }
       }
     }
