@@ -28,14 +28,10 @@ pipeline {
 
     stage('Checkout') {
       steps {
-          script {
-              // Change to the 'demo-master' folder before checking out the code
-              dir('demo-master') {
-                  checkout scm
-                  }
-              }
-          }
+        checkout scm
+      }
     }
+
 
     stage('Build') {
         steps {
