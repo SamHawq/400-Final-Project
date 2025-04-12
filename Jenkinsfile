@@ -102,18 +102,22 @@ pipeline {
     
     stage('Static Analysis') {
       steps {
-        githubChecks(name: 'Static Analysis') {
+        script {
           dir('demo-master') {
             sh 'export JAVA_HOME=/opt/java/openjdk && ./gradlew sonarqube'
             sleep 5
             sh 'export JAVA_HOME=/opt/java/openjdk && ./gradlew checkQualityGate'
           }
+
+          publishChecks name: 'Static Analysis', conclusion: 'success', detailsURL: '', output: [
+            title: 'SonarQube Analysis',
+            summary: 'Static code analysis completed.',
+            text: 'The SonarQube scan and quality gate check have passed successfully.'
+          ]
         }
       }
     }
-    
     //DOCKER IMAGE NEED SONARQUBE SET UP
-
     
     // Move the binary over to the test environment and
     // get it running, in preparation for tests that
