@@ -109,6 +109,15 @@ pipeline {
           sh 'export JAVA_HOME=/opt/java/openjdk && ./gradlew checkQualityGate'
         }
       }
+
+      post {
+        success {
+          githubNotify context: 'SonarQube', status: 'SUCCESS', description: 'Analysis passed'
+        }
+        failure {
+          githubNotify context: 'SonarQube', status: 'FAILURE', description: 'Analysis failed'
+        }
+      }
     }
     
     //DOCKER IMAGE NEED SONARQUBE SET UP
