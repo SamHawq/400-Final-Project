@@ -1,6 +1,6 @@
 # ENSF 400 Final Project
 ## The Team:
-Cody Casselman, Evan Mann, Sam Haque, Keeryn Johnson
+Cody Casselman, Evan Mann, Samiul Haque, Keeryn Johnson
 
 ## How to Run:
 1. Clone the repo
@@ -12,7 +12,6 @@ Cody Casselman, Evan Mann, Sam Haque, Keeryn Johnson
 1. Make a Multi-Pipeline
 2. define as 'Pipeline script from SCM'
 3. set repository URL as: https://github.com/SamHawq/400-Final-Project
-4. set branch to main (NOT master)
 5. Go to Manage Jenkins
 6. Select Tools
 7. scroll to gradle installations
@@ -27,9 +26,7 @@ Cody Casselman, Evan Mann, Sam Haque, Keeryn Johnson
 16. press save
 17. Go to Manage Jenkins again
 18. Go to plugins
-19. make sure to add and install Docker API Plugin, Docker Commons Plugin, Docker Pipeline, Docker pluging
-
-any more plugins???
+19. Make sure to add and install Docker API Plugin, Docker Commons Plugin, Docker Pipeline, Docker plugin
 
 ## Error checking
 1. if you see cannot find gradlew, go back to your tools and make sure you apply and save
