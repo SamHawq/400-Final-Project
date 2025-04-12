@@ -109,7 +109,7 @@ pipeline {
             sh 'export JAVA_HOME=/opt/java/openjdk && ./gradlew checkQualityGate'
           }
 
-          publishChecks name: 'Static Analysis', conclusion: 'SUCCESS'
+          publishChecks name: 'Static Analysis', conclusion: 'SUCCESS', detailsURL: 'https://glowing-enigma-69rgxx9p4pww3q9q-9000.app.github.dev/dashboard?id=Demo'
         }
       }
     }
