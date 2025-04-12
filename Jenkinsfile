@@ -102,17 +102,18 @@ pipeline {
     
     stage('Static Analysis') {
       steps {
-        dir('demo-master') {
-          sh 'export JAVA_HOME=/opt/java/openjdk && ./gradlew sonarqube'
-          // wait for sonarqube to finish its analysis
-          sleep 5
-          sh 'export JAVA_HOME=/opt/java/openjdk && ./gradlew checkQualityGate'
+        script {
+          dir('demo-master') {
+            sh 'export JAVA_HOME=/opt/java/openjdk && ./gradlew sonarqube'
+            sleep 5
+            sh 'export JAVA_HOME=/opt/java/openjdk && ./gradlew checkQualityGate'
+          }
+
+          publishChecks name: 'Static Analysis', conclusion: 'SUCCESS'
         }
       }
     }
-    
     //DOCKER IMAGE NEED SONARQUBE SET UP
-
     
     // Move the binary over to the test environment and
     // get it running, in preparation for tests that
@@ -252,23 +253,5 @@ pipeline {
       }
     }
     */
-  }
-
-  post {
-    failure {
-        setGitHubPullRequestStatus (
-            state: 'FAILURE',
-            context: 'Jenkins',
-            message: 'Build failed',
-        )
-    }
-
-    success {
-        setGitHubPullRequestStatus (
-            state: 'SUCCESS',
-            context: 'Jenkins',
-            message: 'Build succeeded',
-        )
-    }
   }
 }
