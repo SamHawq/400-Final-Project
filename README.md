@@ -1,6 +1,5 @@
 # ENSF 400 Final Project
 
-
 ## The Team:
 Cody Casselman, Evan Mann, Sam Haque, Keeryn Johnson
 
