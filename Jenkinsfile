@@ -255,11 +255,20 @@ pipeline {
   }
 
   post {
-    success {
-      githubNotify context: 'Jenkins', status: 'SUCCESS', description: 'Build passed'
-    }
     failure {
-      githubNotify context: 'Jenkins', status: 'FAILURE', description: 'Build failed'
+        setGitHubPullRequestStatus (
+            state: 'FAILURE',
+            context: 'Jenkins',
+            message: 'Build failed',
+        )
+    }
+
+    success {
+        setGitHubPullRequestStatus (
+            state: 'SUCCESS',
+            context: 'Jenkins',
+            message: 'Build succeeded',
+        )
     }
   }
 }
