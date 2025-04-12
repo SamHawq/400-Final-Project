@@ -109,11 +109,7 @@ pipeline {
             sh 'export JAVA_HOME=/opt/java/openjdk && ./gradlew checkQualityGate'
           }
 
-          publishChecks name: 'Static Analysis', conclusion: 'success', detailsURL: '', output: [
-            title: 'SonarQube Analysis',
-            summary: 'Static code analysis completed.',
-            text: 'The SonarQube scan and quality gate check have passed successfully.'
-          ]
+          publishChecks name: 'Static Analysis', conclusion: 'SUCCESS'
         }
       }
     }
