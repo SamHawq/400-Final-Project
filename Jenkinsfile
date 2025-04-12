@@ -102,28 +102,12 @@ pipeline {
     
     stage('Static Analysis') {
       steps {
-        dir('demo-master') {
-          sh 'export JAVA_HOME=/opt/java/openjdk && ./gradlew sonarqube'
-          // wait for sonarqube to finish its analysis
-          sleep 5
-          sh 'export JAVA_HOME=/opt/java/openjdk && ./gradlew checkQualityGate'
-        }
-      }
-
-      post {
-        success {
-          setGitHubPullRequestStatus(
-            state: 'SUCCESS',
-            context: 'SonarQube',
-            message: 'Static analysis passed'
-          )
-        }
-        failure {
-          setGitHubPullRequestStatus(
-            state: 'FAILURE',
-            context: 'SonarQube',
-            message: 'Static analysis failed'
-          )
+        githubChecks(name: 'Static Analysis') {
+          dir('demo-master') {
+            sh 'export JAVA_HOME=/opt/java/openjdk && ./gradlew sonarqube'
+            sleep 5
+            sh 'export JAVA_HOME=/opt/java/openjdk && ./gradlew checkQualityGate'
+          }
         }
       }
     }
